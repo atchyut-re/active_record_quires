@@ -5,24 +5,14 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: ruby-2.3.0
 
-* System dependencies
+* Database : SQLlite3
 
-* Configuration
+* This repository is created by taking the sample active record quires from rails guides website, In this repository I have used scaffold for generating a Post Model. The home page its self is and index of posts model.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Data taken in this repo is stored in the 'seed' file.
 
 
-Please feel free to use a different markup language if you do not plan to run
+Please feel free to use and drop your commnets, You are always welcome to make nessary changes when you find a bug or you can add any new quires.
 <tt>rake doc:app</tt>.
