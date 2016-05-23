@@ -1,0 +1,428 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'New Post', new_post_path, class: "btn btn-success" %> </br></br>
+<b>Query: Post.all</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.all.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.find(1)</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.find(1) == nil %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% post = @posts.find(1) %>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.name %></td>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td
+      <td><%= link_to 'Show', post %></td>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.last</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% post = @posts.last %>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.name %></td>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td
+      <td><%= link_to 'Show', post %></td>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.find([1,10])</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.find([1,10]).count < 2 %>
+    <tr>
+        <td colspan="5">
+          Please add 10 records to get 1st, 10th records.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.find([1,10]).each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.find_each(:start => 5, :batch_size => 3)</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.find_each(:start => 5, :batch_size => 3) do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.order("created_at DESC")</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.order("created_at DESC").each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<b>Query: Post.limit(5)</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.limit(5).count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.limit(5).each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.limit(3).offset(5)</b>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.limit(3).offset(5).each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.where("id>5").limit(5).order("id desc").except(:order)</b><br><br>
+<p> <b>Note:</b> Here as per the 'order' it should be displayed in desc order, but as we are using 'except' the query is ignoring the 'order'</p>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.where("id>5").limit(5).order("id desc").except(:order).each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.where('id > 5').limit(5).order('id desc').only(:order, :where)
+</b></br></br>
+<p> <b>Note:</b> Here as we are using the 'only' keyword, in this query only 'order', 'where' conditions are executed and limit is ignored.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.where('id > 5').limit(5).order('id desc').only(:order, :where)
+.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<b>Query: Post.one_month_before(1.month.ago)</b><br><br>
+<p> <b>Note:</b> Here 'one_month_ago' is the scope method taken in model.</p>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @posts.count == 0 %>
+    <tr>
+        <td colspan="5">
+          No records found.  Click the button above to add a new one.
+        </td>
+      </tr>
+  <% else %>
+    <% @posts.one_month_before(1.month.ago).each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+
+
+
